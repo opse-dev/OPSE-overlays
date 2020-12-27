@@ -1,14 +1,14 @@
-#define MyAppName ""
-#define MyAppVersion ""
+#define MyAppName "OPSE Overlay Server"
+#define MyAppVersion "1.0.0"
 #define MyAppPublisher "Taimoor Tariq"
 #define MyAppURL ""
-#define MyAppBaseName ""
-#define MyAppDir ".\dist"
-#define MyAppDirSrc "-win32-x64"
-#define MyIcon "..\app\src\assets\icon.ico"
+#define MyAppBaseName "opse-overlay-server"
+#define MyAppDir "C:\Users\taimo\Desktop\Taimoor\GitHub\opseOVERLAY-server\dist"
+#define MyAppDirSrc "{#MyAppBaseName}-win32-x64"
+#define MyIcon "C:\Users\taimo\Desktop\Taimoor\GitHub\opseOVERLAY-server\app\src\assets\icon.ico"
 
 [Setup]
-AppId={{UUID}
+AppId={{5fea0472-4f26-49c8-b35e-9906d5954a07}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
