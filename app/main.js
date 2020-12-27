@@ -1,13 +1,16 @@
 const {app, BrowserWindow, Menu, Tray, nativeImage } = require('electron');
-const {overlayWindow} = require('electron-overlay-window');
+require('./src/server');
 
 function createWindow () {
 	const mainWindow = new BrowserWindow({
 		width: 600,
-		height: 400
+		height: 400,
+		resizable: false
 	});
 
 	global.mainWindow = mainWindow;
+	mainWindow.setMenu(null)
+	mainWindow.loadURL('http://localhost:5000/');
 }
 
 app.on('ready', createWindow);

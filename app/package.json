@@ -1,7 +1,7 @@
 {
-	"name": "electron-template",
+	"name": "opse-overlay-server",
 	"version": "1.0.0",
-	"description": "Template for electon apps",
+	"description": "Server to run OPSE overlays",
 	"main": "main.js",
 	"scripts": {
 		"start": "electron .",
@@ -11,12 +11,13 @@
 	"author": "Taimoor Tariq",
 	"license": "MIT",
 	"dependencies": {
-		"electron-overlay-window": "^1.0.4",
 		"express": "^4.17.1",
+		"public-ip": "^4.0.3",
+		"pug": "^3.0.0",
 		"request": "^2.88.2",
 		"request-promise": "^4.2.6",
-		"socket.io": "^2.3.0",
-		"socket.io-client": "^2.3.1"
+		"sass": "^1.30.0",
+		"socket.io": "^2.3.0"
 	},
 	"devDependencies": {
 		"electron": "^10.1.5",
