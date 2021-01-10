@@ -5,7 +5,9 @@
 	"author": "Taimoor Tariq",
 	"license": "MIT",
 	"main": "compile.js",
-	"scripts": {},
+	"scripts": {
+		"make": "node make.js"
+	},
 	"dependencies": {
 		"innosetup-compiler-cn": "^1.0.6"
 	}

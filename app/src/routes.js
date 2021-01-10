@@ -17,7 +17,6 @@ router.get('/', async (req, res) => {
 router.route('/overlay1/:postID?')
     .get(async (req, res) => {
         res.send(pug.renderFile('./src/overlays/views/overlay_1.pug', {
-            ip: await ip.v4(),
             style: sass.renderSync({file: `./src/overlays/scss/overlay_1.scss`}).css.toString(),
         }))
     })
