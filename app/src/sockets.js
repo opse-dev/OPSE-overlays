@@ -5,9 +5,7 @@ let init = (newIO) => {
 
         io.on('connection', (socket) => {
             console.log(`  -> ${socket.id} connected`);
-            
             socket.on('register-overlay', (overlay) => { socket.join(overlay) });
-
             socket.on('disconnect', () => { console.log(`  <- ${socket.id} disconnected`) });
         });
 
@@ -15,8 +13,7 @@ let init = (newIO) => {
     } catch (error) {
         console.log(error);
         return false;
-    }
-    
+    } 
 };
 
 module.exports = {
