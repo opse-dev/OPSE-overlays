@@ -1,10 +1,71 @@
-@import url(https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Saira);
+
+$opse-red: #D7282F;
+$opse-blue: #101820;
+
+$white: #F0F0F0;
+$LightOrange: #E69F66;
 
 body {
-    background: #222;
-    color: #ddd;
-    font-family: Exo;
+    padding: 0;
+    margin: 0;
+}
+
+.unselectable { user-select: none; }
+
+.body {
+    background: $opse-blue;
+    color: $white;
+    font-family: Saira, sans-serif;
+    height: 100%; width: 100%;
     text-transform: uppercase;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.titlebar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 40px; width: 100%;
+    display: flex;
+
+    div {float: left;}
+
+    .icon {
+        height: 40px; width: 60px;
+        background-image: url('/assets/logos/icon.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 60%;
+    }
+
+    .title {
+        height: 40px; width: 100%;
+        -webkit-app-region: drag;
+        user-select: none;
+        font-weight: 900;
+        padding: 7px 0px;
+    }
+
+    .actions {
+        height: 40px; width: 40px;
+        padding: 0px;
+
+        .action {
+            padding: 10px;
+            padding-right: 0px;
+            transform: scale(1.2);
+            cursor: pointer;
+
+            &.close:hover { color: $opse-red; }
+        }
+    }
+}
+
+.app-body {
+    position: fixed;
+    top: 40px; left: 0;
+    height: calc(100% - 40px); width: 100%;
 }
 
 .container {
@@ -14,7 +75,7 @@ body {
     text-align: center;
 
     .ip {
-        background: #000;
+        background: $opse-red;
         padding: 20px 40px 15px;
         border-radius: 10px;
         letter-spacing: 2px;

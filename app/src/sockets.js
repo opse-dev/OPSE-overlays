@@ -1,3 +1,4 @@
+const main = require('../main');
 let io = null;
 
 /**
@@ -13,6 +14,9 @@ let init = (newIO) => {
             // socket.on('disconnect', () => { console.log(`  <- ${socket.id} disconnected`) });
 
             socket.on('register-overlay', (overlay) => { socket.join(overlay) });
+
+            socket.on('minimain', () => { main.minimizeMain() });
+            socket.on('quitapp', () => { main.quit() });
         });
 
         return true;

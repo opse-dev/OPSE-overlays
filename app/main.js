@@ -5,7 +5,10 @@ function createWindow () {
 	const mainWindow = new BrowserWindow({
 		width: 600,
 		height: 400,
-		resizable: false
+		resizable: false,
+		icon: `${__dirname}/src/assets/icon.ico`,
+		transparent: true, 
+		frame: false,
 	});
 
 	global.mainWindow = mainWindow;
@@ -26,3 +29,5 @@ app.on('activate', function () {
 		createWindow();
 	}
 });
+
+exports.quit = () => { app.quit(); }

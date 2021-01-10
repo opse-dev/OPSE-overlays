@@ -1,6 +1,26 @@
 head
+    title OPSE Overlays Server
     style !{style}
+    script(src="https://kit.fontawesome.com/7e8647c319.js")
 
-.container
-    h2 Clients can connect at 
-    h2.ip #{ip}
+.body
+    .titlebar
+        .icon
+        .title OPSE Overlays
+        .actions
+            .action.close(onclick="quitapp()")
+                i.fas.fa-times
+
+    .app-body
+        .container
+            h2 Clients can connect at 
+            h2.ip #{ip}
+
+
+script(src="https://code.jquery.com/jquery-3.5.1.min.js")
+script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js")
+script(src="/socket.io/socket.io.js")
+script.
+    let socket = io();
+
+    function quitapp() { socket.emit('quitapp') }

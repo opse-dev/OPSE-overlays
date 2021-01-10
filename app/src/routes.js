@@ -3,7 +3,8 @@ const express = require('express'),
     router = express.Router(),
     ip = require('public-ip'),
     sass = require('sass'),
-    pug = require('pug')
+    pug = require('pug'),
+    fs = require('fs')
 
 
 router.get('/', async (req, res) => {
