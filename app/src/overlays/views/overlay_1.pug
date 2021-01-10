@@ -1,0 +1,14 @@
+extends _layout
+
+append main
+    +simple-container(0.2, 0.3)
+        p#test TEST
+
+append scripts
+    script.
+        socket.emit('register-overlay', 'overlay1')
+
+        socket.on('test', data => {
+            console.log(data)
+            $('#test').html(data);
+        })

@@ -1,0 +1,6 @@
+mixin simple-container(x=0, y=0)
+    - var top_percent = `${(y/1)*100}%`
+    - var left_percent = `${(x/1)*100}%`
+
+    .component-container(style="top: "+top_percent+"; left: "+left_percent+";")
+        block
