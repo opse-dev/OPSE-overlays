@@ -9,9 +9,10 @@ let init = (newIO) => {
         io = newIO;
 
         io.on('connection', (socket) => {
-            console.log(`  -> ${socket.id} connected`);
+            // console.log(`  -> ${socket.id} connected`);
+            // socket.on('disconnect', () => { console.log(`  <- ${socket.id} disconnected`) });
+
             socket.on('register-overlay', (overlay) => { socket.join(overlay) });
-            socket.on('disconnect', () => { console.log(`  <- ${socket.id} disconnected`) });
         });
 
         return true;
@@ -27,8 +28,10 @@ module.exports = {
      * @param {io} newIO The IO for the socket connections.
      */
     init: (newIO) => {
-        if (!io && init(newIO)) return "Sockets Initialised";
-        else "Error while Initialising sockets";
+        return new Promise((resolve, reject) => {
+            if (!io && init(newIO)) resolve();
+            else reject("Error while initialising sockets.");
+        });
     },
 
     /**
@@ -37,8 +40,13 @@ module.exports = {
      * @param {string} body (optional) Any body to send along with the event
      */
     emit: (evtName, body) => {
-        if (!io) return "IO not Initialised";
-        io.emit(evtName, body);
+        return new Promise((resolve, reject) => {
+            if (!io) reject("Sockets not initialised");
+            else {
+                io.emit(evtName, body);
+                resolve();
+            }
+        });
     },
 
 
@@ -49,7 +57,12 @@ module.exports = {
      * @param {string} body (optional) Any body to send along with the event
      */
     emitTo: (overlayID, evtName, body) => {
-        if (!io) return "IO not Initialised";
-        io.to(overlayID).emit(evtName, body);
+        return new Promise((resolve, reject) => {
+            if (!io) reject("Sockets not initialised");
+            else {
+                io.to(overlayID).emit(evtName, body);
+                resolve();
+            }
+        });
     },
 }

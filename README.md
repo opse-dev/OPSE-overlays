@@ -11,7 +11,9 @@
 ## Creating a new overlay
 
 ### Step 1
+
 Create a `.pug` file in `/src/overlays/views` with the following format
+
 ```pug
 extends _layout
 
@@ -19,25 +21,29 @@ append main
     //- ALL THE CONTENTS OF THE BODY
 
     //- EXAMPLE
-    p TEST
-
-    +simple-container(0.2, 0.3)
-        p MIXIN
-
+    .component.fill.b-x.brs-tr(style="top: 10%; left: 20%;")
+        p#test TEST
 
 append scripts
     script.
-        //- REGISTER THE OVERLAY BY EMITING THE FOLLOWING EVENT (replace {overlayID} with a string to identify this overlay)
-        socket.emit('register-overlay', overlayID)
+        //- register overlay - IMPORANT
+        register(location.href.split("/")[3]);
 
-        //- EXAMPLE EVENT
-        socket.on(event, data => {
-            console.log(data)
-        })
+        //- listening for events
+        listen(eventName, data => {
+            //- handel event
+        });
+
+        //- EXAMPLE
+        listen('test', data => {
+            $('#test').html(data);
+        });
 ```
 
 ### Step 2
+
 Create a `.scss` file in `/src/overlays/scss` with the following format
+
 ```scss
 @import './essentials';
 
@@ -45,7 +51,9 @@ Create a `.scss` file in `/src/overlays/scss` with the following format
 ```
 
 ### Step 3
+
 Setup routes for your overlay in `routes.js`
+
 ```js
 // replace {overlayID} with the ID of the overlay
 router.route('/{overlayID}/:postID?')
@@ -69,3 +77,53 @@ router.route('/{overlayID}/:postID?')
         }
     });
 ```
+
+<br>
+
+## CSS Docs
+
+### Component
+
+Any component on the overlay should have `.component` as the parent class
+
+```pug
+.component(style="top: topOffset; left: leftOffset; ...")
+    // content of the div
+```
+
+You can fill a component by adding the `.fill` class to the component
+
+```pug
+.component.fill(style="top: topOffset; left: leftOffset; ...")
+    // content of the div
+```
+
+### Borders
+
+Borders can be applied to components by adding the `.b` class to the component.
+
+* `.b` - Borders on all sides
+* `.b-x` - Borders only on left and right
+* `.b-y` - Borders only on top and bottom
+* `.b-t` - Borders only on top
+* `.b-r` - Borders only on right
+* `.b-b` - Borders only on bottom
+* `.b-l` - Borders only on left
+
+### Borders Radius
+
+A border-radius can be applied to components by adding the `.br` class to the component.
+
+* `.br` - Radius on all corners
+* `.br-tl` - Radius only on top-left corner
+* `.br-tr` - Radius only on top-right corner
+* `.br-bl` - Radius only on bottom-left corner
+* `.br-br` - Radius only on bottom-right corner
+
+Adding the `.brs` class will apply a smaller border radius
+
+* `.brs` - Radius on all corners
+* `.brs-tl` - Radius only on top-left corner
+* `.brs-tr` - Radius only on top-right corner
+* `.brs-bl` - Radius only on bottom-left corner
+* `.brs-br` - Radius only on bottom-right corner
