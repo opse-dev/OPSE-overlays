@@ -68,8 +68,9 @@ router.route('/{overlayID}/:postID?')
             switch (req.params.postID.toLowerCase()) {
                 case "test":
                     // emitting an event to {overlayID}
-                    io.emitTo(overlayID, eventName, eventBody);
-                    return res.send(`Handel request for ${req.params.postID}`);
+                    io.emitTo({overlayID}, "test", "THIS IS A TEST")
+                        .then(() => { res.send(`Event sent`) })
+                        .catch(e => { res.send(`Error: "${e}"`) });
             
                 default:
                     return res.send(`Handel request for ${req.params.postID}`);
