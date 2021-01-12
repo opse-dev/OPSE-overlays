@@ -58,8 +58,8 @@ Setup routes for your overlay in `routes.js`
 // replace {overlayID} with the ID of the overlay
 router.route('/{overlayID}/:postID?')
     .get(async (req, res) => {
-        res.send(pug.renderFile('./src/overlays/views/{overlay.pug}', {
-            style: sass.renderSync({file: `./src/overlays/scss/{overlay.scss}`}).css.toString(),
+        res.send(pug.renderFile(`${__dirname}/overlays/views/{overlay.pug}`, {
+            style: sass.renderSync({file: `${__dirname}/overlays/scss/{overlay.scss}`}).css.toString(),
         }))
     })
     .post(async (req, res) => {
