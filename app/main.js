@@ -1,4 +1,5 @@
 const {app, BrowserWindow, Menu, Tray, nativeImage } = require('electron');
+
 require('./src/server');
 
 function createWindow () {
@@ -13,7 +14,7 @@ function createWindow () {
 
 	global.mainWindow = mainWindow;
 	mainWindow.setMenu(null)
-	mainWindow.loadURL('http://localhost:5000/');
+	mainWindow.loadURL('http://localhost:5000');
 }
 
 app.on('ready', createWindow);

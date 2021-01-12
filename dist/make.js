@@ -2,31 +2,19 @@ const fs = require('fs');
 const app = require('../app/package.json');
 
 let c = `
-#define MyAppName "OPSE Overlay Server"
-#define MyAppVersion "${app.version}"
-#define MyAppPublisher "OPSE Dev"
-#define MyAppURL "https://github.com/opse-dev/OVERLAY-server"
-#define MyAppBaseName "opse-overlay-server"
-#define MyAppDir "${__dirname}"
-#define MyAppDirSrc "{#MyAppBaseName}-win32-x64"
-#define MyIcon "${__dirname}\\icon.ico"
-
 [Setup]
-AppId={{81C958A1-1719-4DE0-9A8F-358C3BCC9981}
-AppName={#MyAppName}
-AppVersion={#MyAppVersion}
-;AppVerName={#MyAppName} {#MyAppVersion}
-AppPublisher={#MyAppPublisher}
-AppPublisherURL={#MyAppURL}
-AppSupportURL={#MyAppURL}
-AppUpdatesURL={#MyAppURL}
-DefaultDirName={autopf}\\{#MyAppName}
+AppId={{F746CC81-7A45-4F41-9C73-B093B58BCB3A}
+AppName="OPSE Overlay Server"
+AppVersion="${app.version}"
+AppPublisher="OPSE Dev"
+AppPublisherURL="https://github.com/opse-dev/OVERLAY-server"
+AppSupportURL="https://github.com/opse-dev/OVERLAY-server"
+AppUpdatesURL="https://github.com/opse-dev/OVERLAY-server"
+DefaultDirName="{autopf}\\OPSE Overlay Server"
 DisableProgramGroupPage=yes
-; Uncomment the following line to run in non administrative install mode (install for current user only.)
-;PrivilegesRequired=lowest
-OutputDir={#MyAppDir}
-OutputBaseFilename={#MyAppBaseName}-setup
-SetupIconFile={#MyIcon}
+OutputDir="${__dirname}"
+OutputBaseFilename="${app.name}-setup"
+SetupIconFile="${__dirname}\\icon.ico"
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -38,31 +26,30 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "{#MyAppDir}\\{#MyAppDirSrc}\\{#MyAppBaseName}.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppDir}\\{#MyAppDirSrc}\\chrome_100_percent.pak"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppDir}\\{#MyAppDirSrc}\\chrome_200_percent.pak"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppDir}\\{#MyAppDirSrc}\\d3dcompiler_47.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppDir}\\{#MyAppDirSrc}\\ffmpeg.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppDir}\\{#MyAppDirSrc}\\icudtl.dat"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppDir}\\{#MyAppDirSrc}\\libEGL.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppDir}\\{#MyAppDirSrc}\\libGLESv2.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppDir}\\{#MyAppDirSrc}\\LICENSE"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppDir}\\{#MyAppDirSrc}\\resources.pak"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppDir}\\{#MyAppDirSrc}\\snapshot_blob.bin"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppDir}\\{#MyAppDirSrc}\\v8_context_snapshot.bin"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppDir}\\{#MyAppDirSrc}\\version"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppDir}\\{#MyAppDirSrc}\\vk_swiftshader.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppDir}\\{#MyAppDirSrc}\\vk_swiftshader_icd.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppDir}\\{#MyAppDirSrc}\\vulkan-1.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppDir}\\{#MyAppDirSrc}\\data\\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-; NOTE: Don't use "Flags: ignoreversion" on any shared system files
+Source: "${__dirname}\\${app.name}-win32-x64\\${app.name}.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "${__dirname}\\${app.name}-win32-x64\\chrome_100_percent.pak"; DestDir: "{app}"; Flags: ignoreversion
+Source: "${__dirname}\\${app.name}-win32-x64\\chrome_200_percent.pak"; DestDir: "{app}"; Flags: ignoreversion
+Source: "${__dirname}\\${app.name}-win32-x64\\d3dcompiler_47.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "${__dirname}\\${app.name}-win32-x64\\ffmpeg.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "${__dirname}\\${app.name}-win32-x64\\icudtl.dat"; DestDir: "{app}"; Flags: ignoreversion
+Source: "${__dirname}\\${app.name}-win32-x64\\libEGL.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "${__dirname}\\${app.name}-win32-x64\\libGLESv2.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "${__dirname}\\${app.name}-win32-x64\\LICENSE"; DestDir: "{app}"; Flags: ignoreversion
+Source: "${__dirname}\\${app.name}-win32-x64\\resources.pak"; DestDir: "{app}"; Flags: ignoreversion
+Source: "${__dirname}\\${app.name}-win32-x64\\snapshot_blob.bin"; DestDir: "{app}"; Flags: ignoreversion
+Source: "${__dirname}\\${app.name}-win32-x64\\v8_context_snapshot.bin"; DestDir: "{app}"; Flags: ignoreversion
+Source: "${__dirname}\\${app.name}-win32-x64\\version"; DestDir: "{app}"; Flags: ignoreversion
+Source: "${__dirname}\\${app.name}-win32-x64\\vk_swiftshader.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "${__dirname}\\${app.name}-win32-x64\\vk_swiftshader_icd.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "${__dirname}\\${app.name}-win32-x64\\vulkan-1.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "${__dirname}\\${app.name}-win32-x64\\data\\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
-Name: "{autoprograms}\\{#MyAppName}"; Filename: "{app}\\{#MyAppBaseName}.exe"
-Name: "{autodesktop}\\{#MyAppName}"; Filename: "{app}\\{#MyAppBaseName}.exe"; Tasks: desktopicon
+Name: "{autoprograms}\\OPSE Overlay Server"; Filename: "{app}\\${app.name}.exe"
+Name: "{autodesktop}\\OPSE Overlay Server"; Filename: "{app}\\${app.name}.exe"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\\{#MyAppBaseName}.exe"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\\${app.name}.exe"; Description: "{cm:LaunchProgram,{#StringChange('${app.name}', '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 `
 
 fs.writeFile('./compiler.iss', c, 'utf8', (err) => {

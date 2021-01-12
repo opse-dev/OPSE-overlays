@@ -8,17 +8,17 @@ const express = require('express'),
 
 
 router.get('/', async (req, res) => {
-    res.send(pug.renderFile('./src/main/page.pug', {
+    res.send(pug.renderFile(`${__dirname}/main/page.pug`, {
         ip: await ip.v4(),
-        style: sass.renderSync({file: `./src/main/style.scss`}).css.toString(),
+        style: sass.renderSync({file: `${__dirname}/main/style.scss`}).css.toString(),
     }))
 });
 
 
 router.route('/overlay1/:postID?')
     .get(async (req, res) => {
-        res.send(pug.renderFile('./src/overlays/views/overlay_1.pug', {
-            style: sass.renderSync({file: `./src/overlays/scss/overlay_1.scss`}).css.toString(),
+        res.send(pug.renderFile(`${__dirname}/overlays/views/overlay_1.pug`, {
+            style: sass.renderSync({file: `${__dirname}/overlays/scss/overlay_1.scss`}).css.toString(),
         }))
     })
     .post(async (req, res) => {
