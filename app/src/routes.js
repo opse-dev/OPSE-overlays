@@ -1,5 +1,3 @@
-const { checkServerIdentity } = require('tls');
-
 const express = require('express'),
     io = require('./sockets'),
     router = express.Router(),
@@ -32,29 +30,26 @@ router.get('/controller/:overlayID/', async (req, res) => {
     }));
 });
 
-router.route('/overlay/:overlayID/:postID?')
+
+router.route('/overlay/1/:postID?')
     .get(async (req, res) => {
-        res.send(pug.renderFile(`${__dirname}/views/pug/${req.params.overlayID}.overlay.pug`, {
-            style: sass.renderSync({file: `${__dirname}/views/scss/${req.params.overlayID}.overlay.scss`}).css.toString(),
+        res.send(pug.renderFile(`${__dirname}/views/pug/1.overlay.pug`, {
+            style: sass.renderSync({file: `${__dirname}/views/scss/1.overlay.scss`}).css.toString(),
         }))
     })
     .post(async (req, res) => {
         if (!req.params.postID) res.send("No event specified");
         else {
-            switch (req.params.overlayID.toLowerCase()) {
-                case "1":
-                    switch (req.params.postID.toLowerCase()) {
-                        case "test":
-                            io.emitTo(req.params.overlayID, "test", "THIS IS A TEST")
-                                .then(() => {
-                                    res.send(`Event sent`);
-                                })
-                                .catch(e => {
-                                    res.send(`Error: "${e}"`);
-                                });
-                            return;
-                    }
-                    break;
+            switch (req.params.postID.toLowerCase()) {
+                case "test":
+                    io.emitTo(req.params.overlayID, "test", "THIS IS A TEST")
+                        .then(() => {
+                            res.send(`Event sent`);
+                        })
+                        .catch(e => {
+                            res.send(`Error: "${e}"`);
+                        });
+                    return;
 
                 default:
                     return res.send(`Handel request for ${req.params.postID}`);                
