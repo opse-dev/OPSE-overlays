@@ -4,13 +4,13 @@ const app = require('../app/package.json');
 let c = `
 [Setup]
 AppId={{F746CC81-7A45-4F41-9C73-B093B58BCB3A}
-AppName="OPSE Overlay Server"
+AppName="OPSE Overlays"
 AppVersion="${app.version}"
 AppPublisher="OPSE Dev"
-AppPublisherURL="https://github.com/opse-dev/OVERLAY-server"
-AppSupportURL="https://github.com/opse-dev/OVERLAY-server"
-AppUpdatesURL="https://github.com/opse-dev/OVERLAY-server"
-DefaultDirName="{autopf}\\OPSE Overlay Server"
+AppPublisherURL="https://github.com/opse-dev/OPSE-overlays"
+AppSupportURL="https://github.com/opse-dev/OPSE-overlays"
+AppUpdatesURL="https://github.com/opse-dev/OPSE-overlays"
+DefaultDirName="{autopf}\\OPSE Overlays"
 DisableProgramGroupPage=yes
 OutputDir="${__dirname}"
 OutputBaseFilename="${app.name}-setup"
@@ -45,8 +45,8 @@ Source: "${__dirname}\\${app.name}-win32-x64\\vulkan-1.dll"; DestDir: "{app}"; F
 Source: "${__dirname}\\${app.name}-win32-x64\\data\\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
-Name: "{autoprograms}\\OPSE Overlay Server"; Filename: "{app}\\${app.name}.exe"
-Name: "{autodesktop}\\OPSE Overlay Server"; Filename: "{app}\\${app.name}.exe"; Tasks: desktopicon
+Name: "{autoprograms}\\OPSE Overlays"; Filename: "{app}\\${app.name}.exe"
+Name: "{autodesktop}\\OPSE Overlays"; Filename: "{app}\\${app.name}.exe"; Tasks: desktopicon
 
 [Run]
 Filename: "{app}\\${app.name}.exe"; Description: "{cm:LaunchProgram,{#StringChange('${app.name}', '&', '&&')}}"; Flags: nowait postinstall skipifsilent

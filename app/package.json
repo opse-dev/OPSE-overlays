@@ -1,5 +1,5 @@
 {
-	"name": "opse-overlay-main",
+	"name": "opse-overlays",
 	"version": "1.0.0",
 	"description": "localhost for OPSE overlays",
 	"main": "main.js",
