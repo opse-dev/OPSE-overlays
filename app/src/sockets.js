@@ -15,8 +15,9 @@ let init = (newIO) => {
 
             socket.on('register-overlay', (overlay) => { socket.join(overlay) });
 
-            socket.on('minimain', () => { main.minimizeMain() });
-            socket.on('quitapp', () => { main.quit() });
+            socket.on('create-local-controller', () => { main.CreateControllerWindow() });
+            socket.on('close-local-controller', () => { main.closeControllerWindow() });
+            socket.on('close-main-app', () => { main.quit() });
         });
 
         return true;

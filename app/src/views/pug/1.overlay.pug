@@ -1,4 +1,4 @@
-extends _layout
+extends _overlay_layout
 
 append main
     .component.fill.b-x.brs-tr(style="top: 10%; left: 20%;")
@@ -8,7 +8,7 @@ append main
 append scripts
     script.
         // register overlay
-        register(location.href.split("/")[3]);
+        register(location.href.split("/")[4]);
 
         // listening for events
         listen('test', data => {

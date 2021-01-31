@@ -1,0 +1,11 @@
+extends _controller_layout
+
+append main
+    h1 Test
+    button(onclick="postTest()") TEST
+    
+append scripts
+    script.
+        function postTest() {
+            $.post("/overlay/1/test");
+        }

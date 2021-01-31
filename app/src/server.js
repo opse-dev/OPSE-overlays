@@ -6,4 +6,4 @@ require('./sockets').init(require('socket.io')(http));
 app.use(require('./routes'));
 app.use('/assets', express.static(`${__dirname}/assets`));
 
-http.listen(5000, console.log("server started"));
+http.listen(5000, console.log("Server started on port 5000"));

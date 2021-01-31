@@ -1,5 +1,5 @@
 head
-    title OPSE Overlays Server
+    title OPSE Overlays
     style !{style}
     script(src="https://kit.fontawesome.com/7e8647c319.js")
 
@@ -15,6 +15,7 @@ head
         .container
             h2 Clients can connect at 
             h2.ip #{ip}
+            p.local-btn(onclick="openLocalController()") OPEN LOCAL CONTROLLER
 
 
 script(src="https://code.jquery.com/jquery-3.5.1.min.js")
@@ -23,4 +24,5 @@ script(src="/socket.io/socket.io.js")
 script.
     let socket = io();
 
-    function quitapp() { socket.emit('quitapp') }
+    function quitapp() { socket.emit('close-main-app') }
+    function openLocalController() { socket.emit('create-local-controller') }

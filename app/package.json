@@ -1,7 +1,7 @@
 {
-	"name": "opse-overlay-server",
+	"name": "opse-overlay-main",
 	"version": "1.0.0",
-	"description": "Server to run OPSE overlays",
+	"description": "localhost for OPSE overlays",
 	"main": "main.js",
 	"scripts": {
 		"start": "electron .",

@@ -1,8 +1,10 @@
-const {app, BrowserWindow, Menu, Tray, nativeImage } = require('electron');
+const {app, BrowserWindow } = require('electron');
 
 require('./src/server');
 
-function createWindow () {
+global.controllerWindow = null;
+
+function createMainWindow() {
 	const mainWindow = new BrowserWindow({
 		width: 600,
 		height: 400,
@@ -17,18 +19,37 @@ function createWindow () {
 	mainWindow.loadURL('http://localhost:5000');
 }
 
-app.on('ready', createWindow);
-
-app.on('window-all-closed', function () {
-	if (process.platform !== 'darwin') {
-		app.quit();
+function createControllerWindow() {
+	if (global.controllerWindow == null) {
+		const controllerWindow = new BrowserWindow({
+			width: 1280,
+			height: 720,
+			resizable: false,
+			icon: `${__dirname}/src/assets/icon.ico`,
+			transparent: true, 
+			frame: false,
+		});
+	
+		global.controllerWindow = controllerWindow;
+		controllerWindow.setMenu(null)
+		controllerWindow.loadURL('http://localhost:5000/controller/1');
 	}
+}
+
+app.on('ready', createMainWindow);
+
+app.on('window-all-closed', () => {
+	if (process.platform !== 'darwin') app.quit();
 });
 
-app.on('activate', function () {
-	if (BrowserWindow.getAllWindows().length === 0) {
-		createWindow();
-	}
+app.on('activate', () => {
+	if (BrowserWindow.getAllWindows().length === 0) createMainWindow();
 });
 
 exports.quit = () => { app.quit(); }
+
+exports.CreateControllerWindow = () => {createControllerWindow()}
+exports.closeControllerWindow = () => {
+	global.controllerWindow.close();
+	global.controllerWindow = null;
+}

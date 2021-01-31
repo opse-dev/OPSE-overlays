@@ -1,0 +1,31 @@
+head
+    title OPSE Overlays
+    style !{style}
+    script(src="https://kit.fontawesome.com/7e8647c319.js")
+
+.body
+    .titlebar
+        .icon
+        .title OPSE Overlays
+        .actions
+            .action.close(onclick="closewindow()")
+                i.fas.fa-times
+
+    .app-body
+        .sidebar
+            each o in OVERLAYS
+                .link(class=`${o==controllerID?"active":""}` onclick=`openLink('/controller/${controllerID}')`)= o
+        .content
+            h3 Link to overlay: 
+                span(style="background: #CCC; padding: 0 10px; border-radius: 10px;") http://localhost:5000/overlay/#{controllerID}
+            block main
+
+    block scripts
+        script(src="https://code.jquery.com/jquery-3.5.1.min.js")
+        script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js")
+        script(src="/socket.io/socket.io.js")
+        script.
+            let socket = io();
+
+            function closewindow() { socket.emit('close-local-controller') };
+            function openLink(link) { location.href = link };
