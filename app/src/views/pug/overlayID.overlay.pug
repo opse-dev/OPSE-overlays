@@ -7,9 +7,6 @@ append main
 
 append scripts
     script.
-        // register overlay
-        register(location.href.split("/")[4]);
-
         // listening for events
         listen('test', data => {
             $('#test').html(data);

@@ -6,6 +6,8 @@ append main
     
 append scripts
     script.
+        let OVERLAY_ID = location.href.split("/")[4];
+    
         function postTest() {
-            $.post("/overlay/1/test");
+            $.post(`/overlay/${OVERLAY_ID}/test`);
         }

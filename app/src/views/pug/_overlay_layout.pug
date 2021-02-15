@@ -12,11 +12,8 @@ html
             script.
                 let socket = io();
 
-                /**
-                 * Register an overlay to start listening to the server.
-                 * @param {string} overlay The ID of the overlay registering.
-                 */
-                function register(overlay) { socket.emit('register-overlay', overlay) }
+                // Register an overlay to start listening to the server.
+                socket.emit('register-overlay', location.href.split("/")[4]);
 
                 /**
                  * Listen for an event from the server

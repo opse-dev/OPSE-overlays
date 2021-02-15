@@ -5,10 +5,10 @@ const express = require('express'),
     pug = require('pug')
 
 
-router.route('/1/:postID?')
+router.route('/overlayID/:postID?')
     .get(async (req, res) => {
-        res.send(pug.renderFile(`${__dirname}/views/pug/1.overlay.pug`, {
-            style: sass.renderSync({file: `${__dirname}/views/scss/1.overlay.scss`}).css.toString(),
+        res.send(pug.renderFile(`${__dirname}/views/pug/overlayID.overlay.pug`, {
+            style: sass.renderSync({file: `${__dirname}/views/scss/overlayID.overlay.scss`}).css.toString(),
         }))
     })
     .post(async (req, res) => {
@@ -16,7 +16,7 @@ router.route('/1/:postID?')
         else {
             switch (req.params.postID.toLowerCase()) {
                 case "test":
-                    io.emitTo("1", "test", "THIS IS A TEST")
+                    io.emitTo("overlayID", "test", "THIS IS A TEST")
                         .then(() => {
                             res.send(`Event sent`);
                         })
