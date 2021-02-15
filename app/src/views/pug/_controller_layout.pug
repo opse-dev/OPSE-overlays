@@ -8,24 +8,52 @@ head
         .icon
         .title OPSE Overlays
         .actions
-            .action.close(onclick="closewindow()")
+            .action.close-icon(onclick="closewindow()")
                 i.fas.fa-times
 
     .app-body
         .sidebar
+            .link(class=`${controllerID=="General-Settings"?"active":""}` onclick=`openLink('/controller/General-Settings')`) General Settings
             each o in OVERLAYS
-                .link(class=`${o==controllerID?"active":""}` onclick=`openLink('/controller/${controllerID}')`)= o
+                if o != "General-Settings"
+                    .link(class=`${o==controllerID?"active":""}` onclick=`openLink('/controller/${o}')`)= o.replace(/-/g, " ")
         .content
-            h3 Link to overlay: 
-                span(style="background: #CCC; padding: 0 10px; border-radius: 10px;") http://localhost:5000/overlay/#{controllerID}
-            block main
+            .fluid.py-3.px-4.mt-3.overlay-link
+                .input-group
+                    .input-group-prepend
+                        span.input-group-text.bg-light Link to overlay:
+                    input.bg-white(type="text" value="http://localhost:5000/overlay/"+controllerID readonly="" onClick="copyLinkToClipboard(this)").form-control
+            .fluid.py-3.px-4
+                block main
 
     block scripts
         script(src="https://code.jquery.com/jquery-3.5.1.min.js")
         script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js")
+        script(src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js")
         script(src="/socket.io/socket.io.js")
+        script(src="//cdn.jsdelivr.net/npm/sweetalert2@10")
+
+        link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/@sweetalert2/themes@4.0.2/wordpress-admin/wordpress-admin.min.css")
+
         script.
-            let socket = io();
+            const
+                socket = io(),
+                Toast = Swal.mixin({
+                    toast: true,
+                    position: 'bottom',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
 
             function closewindow() { socket.emit('close-local-controller') };
             function openLink(link) { location.href = link };
+
+            function copyLinkToClipboard(e) {
+                e.select();
+                document.execCommand('copy');
+
+                Toast.fire({
+                    icon: 'info',
+                    title: 'Copied to clipboard'
+                });
+            }
