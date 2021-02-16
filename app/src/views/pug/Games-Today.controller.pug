@@ -2,7 +2,14 @@ extends _controller_layout
 
 mixin GAME(gID)
     li.list-group-item.bg-light.py-4
-        h3 Game !{gID[1]}
+        .row.mb-3
+            .col
+                h3 Game !{gID[1]}
+            .col-2.text-center
+                input.btn-check(id=gID+"-visible" type="checkbox" name=gID+"-visible")
+                label.btn.btn-outline-success.w-100.h-100(for=gID+"-visible")
+                    h5.mt-0.mb-0 Visible
+
         .row.mb-3
             .col
                 .form-floating
@@ -16,10 +23,7 @@ mixin GAME(gID)
                     label(for=gID+"-away-score") Away Score
 
             .col-2.text-center
-                if gID == "g1"
-                    input.btn-check(id=gID+"-active-game" type="radio" name="active-game" value=gID checked="")
-                else
-                    input.btn-check(id=gID+"-active-game" type="radio" name="active-game" value=gID)
+                input.btn-check(id=gID+"-active-game" type="radio" name="active-game" value=gID)
                 label.btn.btn-outline-dark.w-100.h-100(for=gID+"-active-game")
                     h5.mt-2.mb-0 Active
 
@@ -36,7 +40,7 @@ mixin GAME(gID)
                     label(for=gID+"-home-score") Home Score
 
             .col-2.text-center
-                input.btn-check(id=gID+"-done" type="checkbox" name=gID+"-done" value=gID)
+                input.btn-check(id=gID+"-done" type="checkbox" name=gID+"-done")
                 label.btn.btn-outline-dark.w-100.h-100(for=gID+"-done")
                     h5.mt-2.mb-0 Done
 
@@ -66,6 +70,7 @@ append scripts
                 document.forms[0]["active-game"].value = games.active;
 
                 for (var i=1; i<5; i++) {
+                    document.forms[0][`g${i}-visible`].checked = games.games[`g${i}`].visible;
                     document.forms[0][`g${i}-done`].checked = games.games[`g${i}`].done;
                     document.forms[0][`g${i}-away`].value = games.games[`g${i}`].away_team;
                     document.forms[0][`g${i}-home`].value = games.games[`g${i}`].home_team;
@@ -75,10 +80,22 @@ append scripts
             }
         });
 
+        $(document).on("click", "input[name='active-game']", function(){
+            thisRadio = $(this);
+            if (thisRadio.hasClass("imChecked")) {
+                thisRadio.removeClass("imChecked");
+                thisRadio.prop('checked', false);
+            } else { 
+                thisRadio.prop('checked', true);
+                thisRadio.addClass("imChecked");
+            };
+        })
+
         function clearAll() {
-            document.forms[0]["active-game"].value = 'g1';
+            document.forms[0]["active-game"].value = '';
 
             for (var i=1; i<5; i++) {
+                document.forms[0][`g${i}-visible`].checked = false;
                 document.forms[0][`g${i}-done`].checked = false;
                 document.forms[0][`g${i}-away`].value = "000";
                 document.forms[0][`g${i}-home`].value = "000";
@@ -92,6 +109,7 @@ append scripts
                 active: document.forms[0]["active-game"].value,
                 games: {
                     g1: {
+                        visible: document.forms[0]["g1-visible"].checked,
                         done: document.forms[0]["g1-done"].checked,
                         away_team: document.forms[0]["g1-away"].value,
                         home_team: document.forms[0]["g1-home"].value,
@@ -99,6 +117,7 @@ append scripts
                         home_team_score: document.forms[0]["g1-home-score"].value,
                     },
                     g2: {
+                        visible: document.forms[0]["g2-visible"].checked,
                         done: document.forms[0]["g2-done"].checked,
                         away_team: document.forms[0]["g2-away"].value,
                         home_team: document.forms[0]["g2-home"].value,
@@ -106,6 +125,7 @@ append scripts
                         home_team_score: document.forms[0]["g2-home-score"].value,
                     },
                     g3: {
+                        visible: document.forms[0]["g3-visible"].checked,
                         done: document.forms[0]["g3-done"].checked,
                         away_team: document.forms[0]["g3-away"].value,
                         home_team: document.forms[0]["g3-home"].value,
@@ -113,6 +133,7 @@ append scripts
                         home_team_score: document.forms[0]["g3-home-score"].value,
                     },
                     g4: {
+                        visible: document.forms[0]["g4-visible"].checked,
                         done: document.forms[0]["g4-done"].checked,
                         away_team: document.forms[0]["g4-away"].value,
                         home_team: document.forms[0]["g4-home"].value,
@@ -120,6 +141,7 @@ append scripts
                         home_team_score: document.forms[0]["g4-home-score"].value,
                     },
                     g5: {
+                        visible: document.forms[0]["g5-visible"].checked,
                         done: document.forms[0]["g5-done"].checked,
                         away_team: document.forms[0]["g5-away"].value,
                         home_team: document.forms[0]["g5-home"].value,

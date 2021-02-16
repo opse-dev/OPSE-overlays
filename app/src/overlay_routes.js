@@ -10,6 +10,7 @@ router.post('/settings/:setting', async (req, res) => {
     switch (req.params.setting.toLowerCase()) {
         case "games-today":
             GENERAL_SETTINGS["GAMES"] = req.body;
+            io.emit('UPDATE_GENERAL_SETTINGS', GENERAL_SETTINGS);
             break;
     }
 
@@ -43,6 +44,5 @@ router.route('/overlayID/:postID?')
             }
         }
     });
-
 
 module.exports = router;
