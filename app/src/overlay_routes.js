@@ -7,7 +7,6 @@ const express = require('express'),
     GENERAL_SETTINGS = {}
 
 router.post('/settings/:setting', async (req, res) => {
-    console.log(req.body)
     switch (req.params.setting.toLowerCase()) {
         case "games-today":
             GENERAL_SETTINGS["GAMES"] = req.body;

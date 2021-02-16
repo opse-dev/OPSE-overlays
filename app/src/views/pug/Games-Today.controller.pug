@@ -44,6 +44,7 @@ mixin GAME(gID)
 append main
     h1.mb-3 Games Today
         button.btn.btn-outline-secondary.ms-3(type="button" onclick="updateGames()") UPDATE
+        button.btn.btn-outline-danger.ms-3(type="button" onclick="clearAll()") CLEAR ALL
 
     form
         ul.list-group
@@ -56,6 +57,36 @@ append main
 
 append scripts
     script.
+        $(document).ready(function(){
+            let games = localStorage.getItem("games-today");
+
+            if (games) {
+                games = JSON.parse(games);
+
+                document.forms[0]["active-game"].value = games.active;
+
+                for (var i=1; i<5; i++) {
+                    document.forms[0][`g${i}-done`].checked = games.games[`g${i}`].done;
+                    document.forms[0][`g${i}-away`].value = games.games[`g${i}`].away_team;
+                    document.forms[0][`g${i}-home`].value = games.games[`g${i}`].home_team;
+                    document.forms[0][`g${i}-away-score`].value = games.games[`g${i}`].away_team_score;
+                    document.forms[0][`g${i}-home-score`].value = games.games[`g${i}`].home_team_score;
+                }
+            }
+        });
+
+        function clearAll() {
+            document.forms[0]["active-game"].value = 'g1';
+
+            for (var i=1; i<5; i++) {
+                document.forms[0][`g${i}-done`].checked = false;
+                document.forms[0][`g${i}-away`].value = "000";
+                document.forms[0][`g${i}-home`].value = "000";
+                document.forms[0][`g${i}-away-score`].value = "";
+                document.forms[0][`g${i}-home-score`].value = "";
+            }
+        }
+
         function updateGames() {
             let games = {
                 active: document.forms[0]["active-game"].value,
@@ -98,10 +129,12 @@ append scripts
                 }
             }
 
+            localStorage.setItem("games-today", JSON.stringify(games));
+
             $.post('/overlay/settings/games-today', games, (data, status) => {
                 Toast.fire({
                     icon: status=="success"?"success":"warning",
                     title: status=="success"?"Saved!":"Error while saving"
                 });
-            })
+            });
         }
