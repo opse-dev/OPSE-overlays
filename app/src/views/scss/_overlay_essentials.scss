@@ -1,11 +1,11 @@
-@import url(https://fonts.googleapis.com/css?family=Jura|Saira);
+@import url(https://fonts.googleapis.com/css?family=Jura|Saira|Roboto);
 
 $opse-red: #D7282F;
 $opse-blue: #101820;
 
 $white: #F0F0F0;
-$border-width: 10px;
-$border-radius: 30px;
+$border-width: 2px;
+$border-radius: 10px;
 
 * { scroll-behavior: smooth; }
 
@@ -16,11 +16,12 @@ body {
 
 .font-jura { font-family: Jura, sans-serif; }
 .font-saira { font-family: Saira, sans-serif; }
+.font-roboto { font-family: Roboto, sans-serif; }
 
 .component {
     position: fixed;
     border-width: 0px;
-    border-style: ridge;
+    border-style: solid;
     border-color: #ffffff;
 
     &.inner-shadow { box-shadow: inset 0px 0px 25px 0px #000000; }
@@ -45,9 +46,14 @@ body {
     &.brs-br { border-radius: 0px 0px $border-width 0px; }
     &.brs-bl { border-radius: 0px 0px 0px $border-width; }
 
-
-    &.fill {
+    &.fill,
+    &.fill-blue {
         background-color: $opse-blue;
+        color: $white;
+    }
+
+    &.fill-red {
+        background-color: $opse-red;
         color: $white;
     }
 }
