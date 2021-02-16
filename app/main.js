@@ -32,7 +32,7 @@ function createControllerWindow() {
 	
 		global.controllerWindow = controllerWindow;
 		controllerWindow.setMenu(null)
-		controllerWindow.loadURL('http://localhost:5000/controller/General-Settings');
+		controllerWindow.loadURL('http://localhost:5000/controller/');
 
 		// controllerWindow.toggleDevTools();
 	}

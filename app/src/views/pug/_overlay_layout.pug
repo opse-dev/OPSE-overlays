@@ -1,13 +1,13 @@
 html
     head
         style !{style}
+        script(src="//code.jquery.com/jquery-3.5.1.min.js")
+        script(src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js")
 
     body
         block main
 
         block scripts
-            script(src="https://code.jquery.com/jquery-3.5.1.min.js")
-            script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js")
             script(src="/socket.io/socket.io.js")
             script.
                 let socket = io();

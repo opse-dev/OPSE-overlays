@@ -1,7 +1,34 @@
+mixin TEAMS_DROPDOWN
+    option(value="000")
+    option(value="001") Carleton Ravens
+    option(value="002") Concordia Esports
+    option(value="003") Conestoga Condors
+    option(value="004") Fanshawe Falcons
+    option(value="005") Lambton Lions Esports
+    option(value="006") Queen's Gaels
+    option(value="007") Ryerson Rams
+    option(value="008") Sault Cougers
+    option(value="009") St. Clair Saints
+    option(value="010") Trent Excalibur
+    option(value="011") uOttawa Gee-Gees Esports
+    option(value="012") University of Toronto Sport & Rec Esports
+    option(value="013") Waterloo Warriors
+    option(value="014") Lancer Gaming
+    option(value="015") Western Mustangs Esports
+    option(value="016") York Lions
+
 head
     title OPSE Overlay Controller
     style !{style}
-    script(src="https://kit.fontawesome.com/7e8647c319.js")
+    
+    script(src="//kit.fontawesome.com/7e8647c319.js")
+    script(src="//code.jquery.com/jquery-3.5.1.min.js")
+    script(src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js")
+    script(src="//cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js")
+    script(src="//cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js")
+    script(src="//cdn.jsdelivr.net/npm/sweetalert2@10")
+
+    link(rel="stylesheet", href="//cdn.jsdelivr.net/npm/@sweetalert2/themes@4.0.2/wordpress-admin/wordpress-admin.min.css")
 
 .body
     .titlebar
@@ -13,10 +40,8 @@ head
 
     .app-body
         .sidebar
-            .link(class=`${controllerID=="General-Settings"?"active":""}` onclick=`openLink('/controller/General-Settings')`) General Settings
             each o in OVERLAYS
-                if o != "General-Settings"
-                    .link(class=`${o==controllerID?"active":""}` onclick=`openLink('/controller/${o}')`)= o.replace(/-/g, " ")
+                .link(class=`${o==controllerID?"active":""}` onclick=`openLink('/controller/${o}')`)= o.replace(/-/g, " ")
         .content
             .fluid.py-3.px-4.mt-3.overlay-link
                 .input-group
@@ -27,13 +52,7 @@ head
                 block main
 
     block scripts
-        script(src="https://code.jquery.com/jquery-3.5.1.min.js")
-        script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js")
-        script(src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js")
         script(src="/socket.io/socket.io.js")
-        script(src="//cdn.jsdelivr.net/npm/sweetalert2@10")
-
-        link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/@sweetalert2/themes@4.0.2/wordpress-admin/wordpress-admin.min.css")
 
         script.
             const

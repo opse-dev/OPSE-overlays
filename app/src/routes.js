@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 });
 
 
-router.get('/controller/:overlayID/', async (req, res) => {
+router.get('/controller/:overlayID?/', async (req, res) => {
     let files = fs.readdirSync(`${__dirname}/views/pug/`);
     let OVERLAYS = [];
 
@@ -22,9 +22,14 @@ router.get('/controller/:overlayID/', async (req, res) => {
         if (file.endsWith(".controller.pug")) OVERLAYS.push(file.split(".")[0]); 
     });
 
-    res.send(pug.renderFile(`${__dirname}/views/pug/${req.params.overlayID}.controller.pug`, {
+    if (req.params.overlayID) res.send(pug.renderFile(`${__dirname}/views/pug/${req.params.overlayID}.controller.pug`, {
         style: sass.renderSync({file: `${__dirname}/views/scss/${req.params.overlayID}.controller.scss`}).css.toString(),
         controllerID: req.params.overlayID,
+        OVERLAYS: OVERLAYS,
+    }));
+    else res.send(pug.renderFile(`${__dirname}/views/pug/${OVERLAYS[0]}.controller.pug`, {
+        style: sass.renderSync({file: `${__dirname}/views/scss/${OVERLAYS[0]}.controller.scss`}).css.toString(),
+        controllerID: OVERLAYS[0],
         OVERLAYS: OVERLAYS,
     }));
 });

@@ -1,4 +1,3 @@
-@import url(https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css);
 @import url(/assets/css/bootstrap.min.css);
 @import url(https://fonts.googleapis.com/css?family=Jura|Saira);
 
@@ -122,5 +121,10 @@ body {
         width: calc(100% - 200px); height: 100%;
         color: $opse-blue;
         left: 200px;
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
     }
 }
