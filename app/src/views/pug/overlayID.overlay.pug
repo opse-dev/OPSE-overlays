@@ -1,11 +1,13 @@
 extends _overlay_layout
 
 append main
+    .component(style="display:none;")
+        input#SCHOOL_INFO(type="text" value=SCHOOL_INFO)
     .component.fill.b-x.brs-tr(style="top: 10%; left: 20%;")
         p#test TEST
 
     .component
-        p !{SCHOOL_INFO[GENERAL_SETTINGS.GAMES.games[GENERAL_SETTINGS.GAMES.active].away_team].team_name}
+        p#away_team !{SCHOOL_INFO[GENERAL_SETTINGS.GAMES.games[GENERAL_SETTINGS.GAMES.active].away_team].team_name}
 
 append scripts
     script.
@@ -13,3 +15,8 @@ append scripts
         listen('test', data => {
             $('#test').html(data);
         });
+
+        listen('UPDATE_GENERAL_SETTINGS', data => {
+            let SCHOOL_INFO = JSON.parse(document.getElementById("SCHOOL_INFO").value);
+            $('#away_team').html(SCHOOL_INFO[data.GAMES.games[data.GAMES.active].away_team].team_name)
+        })
