@@ -1,0 +1,33 @@
+@import './overlay_essentials';
+
+.main {
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    height: 2.8vw;
+    width: 80%;
+    transition: all 0.4s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .logo {
+        background: url(/assets/logos/logo-wide-white.png), $opse-red;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 80%;
+        width: 7vw;
+        height: 100%;
+    }
+    
+    .content {
+        background: $opse-blue;
+        color: $white;
+        height: 100%;
+        font-size: 1.8vw;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 0px;
+        transition: all 0.4s;
+        border-right: solid 5px $opse-red;
+    }
+}
