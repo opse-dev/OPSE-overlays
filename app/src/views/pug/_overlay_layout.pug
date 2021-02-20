@@ -1,5 +1,6 @@
 html
     head
+        title OPSE Overlay
         style !{style}
         script(src="//code.jquery.com/jquery-3.5.1.min.js")
         script(src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js")
@@ -13,8 +14,8 @@ html
                 let socket = io();
 
                 // Register an overlay to start listening to the server.
-                socket.emit('register-overlay', location.href.split("/")[4]);
-
+                socket.emit('register-overlay', location.pathname.split("/")[2]);
+                
                 /**
                  * Listen for an event from the server
                  * @param {string} evtName The name of the event listening for.
