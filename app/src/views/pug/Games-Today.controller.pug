@@ -19,8 +19,13 @@ mixin GAME(gID)
             
             .col-2
                 .form-floating
-                    input.form-control(id=gID+"-away-score" type="text" placeholder="Score" name=gID+"-away-score")
+                    input.form-control(id=gID+"-away-score" type="text" placeholder="Away Score" name=gID+"-away-score")
                     label(for=gID+"-away-score") Away Score
+
+            .col-2
+                .form-floating
+                    input.form-control(id=gID+"-away-standing" type="text" placeholder="Away Standing" name=gID+"-away-standing")
+                    label(for=gID+"-away-standing") Away Standing
 
             .col-2.text-center
                 input.btn-check(id=gID+"-active-game" type="radio" name="active-game" value=gID)
@@ -36,8 +41,13 @@ mixin GAME(gID)
 
             .col-2
                 .form-floating
-                    input.form-control(id=gID+"-home-score" type="text" placeholder="Score" name=gID+"-home-score")
+                    input.form-control(id=gID+"-home-score" type="text" placeholder="Home Score" name=gID+"-home-score")
                     label(for=gID+"-home-score") Home Score
+
+            .col-2
+                .form-floating
+                    input.form-control(id=gID+"-home-standing" type="text" placeholder="Home Standing" name=gID+"-home-standing")
+                    label(for=gID+"-home-standing") Home Standing
 
             .col-2.text-center
                 input.btn-check(id=gID+"-done" type="checkbox" name=gID+"-done")
@@ -76,6 +86,8 @@ append scripts
                     document.forms[0][`g${i}-home`].value = games.games[`g${i}`].home_team;
                     document.forms[0][`g${i}-away-score`].value = games.games[`g${i}`].away_team_score;
                     document.forms[0][`g${i}-home-score`].value = games.games[`g${i}`].home_team_score;
+                    document.forms[0][`g${i}-away-standing`].value = games.games[`g${i}`].away_team_standing;
+                    document.forms[0][`g${i}-home-standing`].value = games.games[`g${i}`].home_team_standing;
                 }
             }
         });
@@ -101,6 +113,8 @@ append scripts
                 document.forms[0][`g${i}-home`].value = "000";
                 document.forms[0][`g${i}-away-score`].value = "";
                 document.forms[0][`g${i}-home-score`].value = "";
+                document.forms[0][`g${i}-away-standing`].value = "";
+                document.forms[0][`g${i}-home-standing`].value = "";
             }
         }
 
@@ -115,6 +129,8 @@ append scripts
                         home_team: document.forms[0]["g1-home"].value,
                         away_team_score: document.forms[0]["g1-away-score"].value,
                         home_team_score: document.forms[0]["g1-home-score"].value,
+                        away_team_standing: document.forms[0]["g1-away-standing"].value,
+                        home_team_standing: document.forms[0]["g1-home-standing"].value,
                     },
                     g2: {
                         visible: document.forms[0]["g2-visible"].checked,
@@ -123,6 +139,8 @@ append scripts
                         home_team: document.forms[0]["g2-home"].value,
                         away_team_score: document.forms[0]["g2-away-score"].value,
                         home_team_score: document.forms[0]["g2-home-score"].value,
+                        away_team_standing: document.forms[0]["g2-away-standing"].value,
+                        home_team_standing: document.forms[0]["g2-home-standing"].value,
                     },
                     g3: {
                         visible: document.forms[0]["g3-visible"].checked,
@@ -131,6 +149,8 @@ append scripts
                         home_team: document.forms[0]["g3-home"].value,
                         away_team_score: document.forms[0]["g3-away-score"].value,
                         home_team_score: document.forms[0]["g3-home-score"].value,
+                        away_team_standing: document.forms[0]["g3-away-standing"].value,
+                        home_team_standing: document.forms[0]["g3-home-standing"].value,
                     },
                     g4: {
                         visible: document.forms[0]["g4-visible"].checked,
@@ -139,6 +159,8 @@ append scripts
                         home_team: document.forms[0]["g4-home"].value,
                         away_team_score: document.forms[0]["g4-away-score"].value,
                         home_team_score: document.forms[0]["g4-home-score"].value,
+                        away_team_standing: document.forms[0]["g4-away-standing"].value,
+                        home_team_standing: document.forms[0]["g4-home-standing"].value,
                     },
                     g5: {
                         visible: document.forms[0]["g5-visible"].checked,
@@ -147,6 +169,8 @@ append scripts
                         home_team: document.forms[0]["g5-home"].value,
                         away_team_score: document.forms[0]["g5-away-score"].value,
                         home_team_score: document.forms[0]["g5-home-score"].value,
+                        away_team_standing: document.forms[0]["g5-away-standing"].value,
+                        home_team_standing: document.forms[0]["g5-home-standing"].value,
                     }
                 }
             }
