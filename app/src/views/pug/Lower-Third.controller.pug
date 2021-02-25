@@ -29,7 +29,7 @@ append main
 
 append scripts
     script.
-        let OVERLAY_ID = location.href.split("/")[4];
+        let OVERLAY_ID = location.pathname.split("/")[2];
 
         $(function() {
             $('#top-margin').on('input', () => {

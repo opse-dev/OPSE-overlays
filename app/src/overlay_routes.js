@@ -4,7 +4,7 @@ const express = require('express'),
     sass = require('sass'),
     pug = require('pug'),
     { tID_sID, school_info } = require('./teams_info'),
-    GENERAL_SETTINGS = {}
+    GENERAL_SETTINGS = {};
 
 router.post('/settings/:setting', async (req, res) => {
     switch (req.params.setting.toLowerCase()) {

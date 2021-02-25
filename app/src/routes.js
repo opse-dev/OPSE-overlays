@@ -1,6 +1,7 @@
 const express = require('express'),
     router = express.Router(),
     ip = require('public-ip'),
+    localIP = require('internal-ip'),
     sass = require('sass'),
     pug = require('pug'),
     fs = require('fs')
@@ -8,7 +9,8 @@ const express = require('express'),
 
 router.get('/', async (req, res) => {
     res.send(pug.renderFile(`${__dirname}/main/page.pug`, {
-        ip: await ip.v4(),
+        // ip: await ip.v4(),
+        ip: await localIP.v4(),
         style: sass.renderSync({file: `${__dirname}/main/style.scss`}).css.toString(),
     }))
 });
