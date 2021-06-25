@@ -1,5 +1,3 @@
 node_modules
 .env
 package-lock.json
-dist/compiler.iss
-*-win32-x64
